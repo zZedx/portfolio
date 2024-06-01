@@ -1,15 +1,13 @@
-"use client";
-
 import React from "react";
 
 interface HeroProps {}
 
 const Hero: React.FC<HeroProps> = () => {
   return (
-    <div className="h-full w-full flex items-center justify-center element">
+    <div className="h-full w-full flex items-center justify-center element" id="hero">
       <div className="flex flex-col uppercase -space-y-6">
         <div className="w-1/2 flex items-center justify-center">
-          <span className="text-accent font-medium tracking-wider -mb-2">I am</span>
+          <span className="text-accent font-medium tracking-wider -mb-2 text-lg">I am</span>
         </div>
         <h1
           className="font-extrabold text-[10rem] tracking-widest"

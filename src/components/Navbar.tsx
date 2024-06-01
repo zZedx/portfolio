@@ -7,7 +7,7 @@ interface NavbarProps {}
 const NavLinks = [
   {
     name: "Home",
-    href: "/",
+    href: "#hero",
   },
   //   {
   //     name: "About",
@@ -15,11 +15,11 @@ const NavLinks = [
   //   },
   {
     name: "Projects",
-    href: "/projects",
+    href: "#projects",
   },
   {
     name: "Contact",
-    href: "/contact",
+    href: "#contact",
   },
 ];
 
