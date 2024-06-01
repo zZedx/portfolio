@@ -1,6 +1,5 @@
 import Glow from "@/components/Glow";
 import Navbar from "@/components/Navbar";
-import ScrollText from "@/components/ScrollText";
 import SocialLinks from "@/components/SocialLinks";
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
@@ -28,7 +27,6 @@ export default function RootLayout({
         <Navbar />
         <SocialLinks />
         <main className="w-full flex h-full flex-1">{children}</main>
-        <ScrollText />
       </body>
     </html>
   );

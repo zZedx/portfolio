@@ -4,7 +4,7 @@ interface HeroProps {}
 
 const Hero: React.FC<HeroProps> = () => {
   return (
-    <div className="h-full w-full flex items-center justify-center element" id="hero">
+    <div className="h-full w-full flex items-center justify-center element">
       <div className="flex flex-col uppercase -space-y-6">
         <div className="w-1/2 flex items-center justify-center">
           <span className="text-accent font-medium tracking-wider -mb-2 text-lg">I am</span>
