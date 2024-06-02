@@ -83,7 +83,7 @@ const Projects: React.FC<ProjectsProps> = () => {
   }, [previousIndex, currentIndex, nextIndex]);
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center pt-16 px-12">
+    <div className="h-full w-full flex flex-col items-center justify-center pt-8 lg:pt-16 px-12">
       <div className="w-[350px] h-[370px] lg:w-[450px] lg:h-[470px] relative">
         {projects.map((project, index) => (
           <div
