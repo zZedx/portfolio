@@ -49,7 +49,7 @@ const Home: React.FC<HomeProps> = () => {
   }, [setActiveSection, activeSection]);
   return (
     <div
-      className="w-full h-dvh overflow-y-scroll snap-mandatory z-[5] hide-scrollbar"
+      className="w-full h-dvh overflow-y-scroll overflow-x-hidden snap-mandatory z-[5] hide-scrollbar"
       style={{
         scrollSnapType: "y mandatory",
         scrollBehavior: "smooth",
