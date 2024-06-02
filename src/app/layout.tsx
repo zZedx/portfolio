@@ -4,6 +4,7 @@ import SocialLinks from "@/components/SocialLinks";
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { ContextProvider } from "@/components/AppContext";
 
 export const playfairDisplay = Playfair_Display({
   weight: "700",
@@ -22,12 +23,14 @@ export default function RootLayout({
 }>): JSX.Element {
   return (
     <html lang="en">
-      <body className={`bg-secondary text-primary flex flex-col h-dvh w-dvw overflow-x-hidden`}>
-        <Glow />
-        <Navbar />
-        <SocialLinks />
-        <main className="w-full flex h-full flex-1">{children}</main>
-      </body>
+      <ContextProvider>
+        <body className={`bg-secondary text-primary flex flex-col h-dvh w-dvw overflow-x-hidden`}>
+          <Glow />
+          <Navbar />
+          <SocialLinks />
+          <main className="w-full flex h-full flex-1">{children}</main>
+        </body>
+      </ContextProvider>
     </html>
   );
 }

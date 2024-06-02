@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppContext } from "@/components/AppContext";
 import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import Hero from "@/components/Hero";
@@ -10,6 +11,7 @@ import React, { useEffect, useRef, useState } from "react";
 interface HomeProps {}
 
 const Home: React.FC<HomeProps> = () => {
+  const { activeSection, setActiveSection } = useAppContext();
   const containerRef = useRef<HTMLDivElement>(null);
   const [onTop, setOnTop] = useState(true);
   const [onBottom, setOnBottom] = useState(false);
@@ -19,6 +21,16 @@ const Home: React.FC<HomeProps> = () => {
     if (container) {
       container.addEventListener("scroll", () => {
         const { scrollTop, scrollHeight, clientHeight } = container;
+
+        if (scrollTop >= clientHeight && scrollTop < clientHeight * 2) {
+          if (activeSection !== "projects") setActiveSection("projects");
+        } else if (scrollTop >= clientHeight * 2 && scrollTop < clientHeight * 3) {
+          if (activeSection !== "experience") setActiveSection("experience");
+        } else if (scrollTop >= clientHeight * 3) {
+          if (activeSection !== "contact") setActiveSection("contact");
+        } else {
+          if (activeSection !== "home") setActiveSection("home");
+        }
 
         if (scrollTop === 0) {
           setOnTop(true);
@@ -34,7 +46,7 @@ const Home: React.FC<HomeProps> = () => {
         }
       });
     }
-  }, []);
+  }, [setActiveSection, activeSection]);
   return (
     <div
       className="w-full h-dvh overflow-y-scroll snap-mandatory z-[5] hide-scrollbar"
@@ -55,7 +67,7 @@ const Home: React.FC<HomeProps> = () => {
       <div className="h-full w-full snap-start" id="experience">
         <Experience />
       </div>
-      <div className="h-full w-full snap-start" id="experience">
+      <div className="h-full w-full snap-start" id="contact">
         <Contact />
       </div>
     </div>

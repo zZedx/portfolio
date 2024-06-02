@@ -83,11 +83,11 @@ const Projects: React.FC<ProjectsProps> = () => {
   }, [previousIndex, currentIndex, nextIndex]);
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center">
-      <div className="w-[450px] h-[470px] relative">
+    <div className="h-full w-full flex flex-col items-center justify-center pt-16 px-12">
+      <div className="w-[350px] h-[370px] lg:w-[450px] lg:h-[470px] relative">
         {projects.map((project, index) => (
           <div
-            className={`absolute grayscale bottom-0 ${index === currentIndex ? "w-[450px] z-10 h-[470px]" : index === previousIndex ? "-translate-x-[390px] z-10 h-[400px] blur-sm w-[350px]" : index === nextIndex ? "blur-sm w-[350px] translate-x-[490px] z-10 h-[400px]" : ""} transition-all duration-400 ease-in-out`}
+            className={`absolute grayscale bottom-0 ${index === currentIndex ? "w-[350px] h-[370px] lg:w-[450px] lg:h-[470px] z-10" : index === previousIndex ? "lg:-translate-x-[390px] -translate-x-[270px] z-10 h-[300px] w-[250px] lg:h-[400px] blur-sm lg:w-[350px]" : index === nextIndex ? "h-[300px] w-[250px] blur-sm lg:w-[350px] lg:translate-x-[490px] translate-x-[370px] z-10 lg:h-[400px]" : ""} transition-all duration-500 ease-in-out`}
             key={index}
           >
             <Image src={project.image} fill alt={project.name} key={index} />
@@ -96,17 +96,17 @@ const Projects: React.FC<ProjectsProps> = () => {
         ))}
       </div>
 
-      <div className="flex flex-col gap-10 items-center justify-center z-50 -mt-12 w-3/5">
-        <h1 className="text-7xl font-bold uppercase tracking-widest">
+      <div className="flex flex-col gap-6 md:gap-10 items-center justify-center z-50 -mt-12 md:w-3/5">
+        <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-widest">
           {projects[currentIndex].name}
         </h1>
 
-        <p className="text-lg text-center w-3/4">{projects[currentIndex].description}</p>
+        <p className=" md:text-lg text-center md:w-3/4">{projects[currentIndex].description}</p>
 
-        <div className="flex gap-12 -mt-5">
+        <div className="flex gap-6 md:gap-12 md:-mt-5">
           {projects[currentIndex].tools.map((tool, index) => (
             <span
-              className="w-32 text-center py-1 text-accent uppercase tracking-wider font-semibold"
+              className="w-28 md:w-32 text-sm md:text-base text-center py-1 text-accent uppercase tracking-wider font-semibold"
               key={index}
             >
               {tool}
@@ -114,7 +114,7 @@ const Projects: React.FC<ProjectsProps> = () => {
           ))}
         </div>
 
-        <div className="flex gap-16 items-center">
+        <div className="flex gap-4 md:gap-16 items-center">
           <button
             onClick={() => {
               if (currentIndex <= 0) {
@@ -130,7 +130,7 @@ const Projects: React.FC<ProjectsProps> = () => {
 
           <Link
             href={projects[currentIndex].url}
-            className="text-accent uppercase tracking-widest text-xl font-semibold px-8 py-3 hover:text-primary transition-all bg-secondary shadow-[rgba(0,0,0,1)_7px_7px_14px_0px] hover:shadow-[rgba(0,0,0,1)_0px_5px_14px_0px]
+            className="text-accent uppercase tracking-widest text-base md:text-xl font-semibold px-4 md:px-8 py-2 md:py-3 hover:text-primary transition-all bg-secondary shadow-[rgba(0,0,0,1)_7px_7px_14px_0px] hover:shadow-[rgba(0,0,0,1)_0px_5px_14px_0px]
           "
             // style={{
             //   boxShadow: "rgba(0, 0, 0, 1) 0px 7px 29px 0px",

@@ -5,21 +5,22 @@ import React, { useState } from "react";
 import { FaXmark } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Logo from "./Logo";
+import { useAppContext } from "./AppContext";
 
 interface NavbarProps {}
 
 const NavLinks = [
   {
     name: "Home",
-    href: "#hero",
-  },
-  {
-    name: "About",
-    href: "#about",
+    href: "#home",
   },
   {
     name: "Projects",
     href: "#projects",
+  },
+  {
+    name: "Experience",
+    href: "#experience",
   },
   {
     name: "Contact",
@@ -28,13 +29,19 @@ const NavLinks = [
 ];
 
 const Navbar: React.FC<NavbarProps> = () => {
+  const { activeSection } = useAppContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <nav className="w-full flex items-center justify-between fixed top-0 left-0 px-12 py-6 md:px-16 md:py-8 z-10">
       <Logo />
       <ul className="space-x-24 text-accent uppercase font-semibold hidden md:flex">
         {NavLinks.map(link => (
-          <li key={link.name} className="hover:text-primary transition-colors">
+          <li
+            key={link.name}
+            className={`hover:text-primary transition-colors ${
+              activeSection === link.name.toLowerCase() ? "text-primary" : ""
+            }`}
+          >
             <Link href={link.href}>{link.name}</Link>
           </li>
         ))}
