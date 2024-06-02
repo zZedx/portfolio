@@ -1,15 +1,9 @@
+import { ContextProvider } from "@/components/AppContext";
 import Glow from "@/components/Glow";
 import Navbar from "@/components/Navbar";
 import SocialLinks from "@/components/SocialLinks";
 import type { Metadata } from "next";
-import { Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { ContextProvider } from "@/components/AppContext";
-
-export const playfairDisplay = Playfair_Display({
-  weight: "700",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Portfolio",
