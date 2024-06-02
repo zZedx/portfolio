@@ -7,7 +7,7 @@ interface ScrollTextProps {
 
 const ScrollText: React.FC<ScrollTextProps> = ({ onTop, onBottom }) => {
   return (
-    <aside className="flex flex-col gap-12 items-center h-full justify-end fixed right-0 px-16 py-12">
+    <aside className="flex flex-col gap-12 items-center h-full justify-end fixed right-0 pr-12 pb-12 md:pr-16 md:py-8">
       {!onTop && (
         <div
           className={`${!onTop && !onBottom ? "h-6" : "h-12"} -ml-1 w-0.5 transition-all rounded-sm bg-accent`}
