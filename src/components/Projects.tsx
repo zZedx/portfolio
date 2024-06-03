@@ -84,16 +84,53 @@ const Projects: React.FC<ProjectsProps> = () => {
 
   return (
     <div className="h-full w-full flex flex-col items-center justify-center pt-8 lg:pt-16 px-12">
-      <div className="w-[350px] h-[370px] lg:w-[450px] lg:h-[470px] relative">
-        {projects.map((project, index) => (
-          <div
-            className={`absolute grayscale bottom-0 ${index === currentIndex ? "w-[350px] h-[370px] lg:w-[450px] lg:h-[470px] z-10" : index === previousIndex ? "lg:-translate-x-[390px] -translate-x-[270px] z-10 h-[300px] w-[250px] lg:h-[400px] blur-sm lg:w-[350px]" : index === nextIndex ? "h-[300px] w-[250px] blur-sm lg:w-[350px] lg:translate-x-[490px] translate-x-[370px] z-10 lg:h-[400px]" : ""} transition-all duration-500 ease-in-out`}
-            key={index}
-          >
-            <Image src={project.image} fill alt={project.name} key={index} />
-            <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
-          </div>
-        ))}
+      <div
+        className="w-[350px] h-[370px] lg:w-[450px] lg:h-[470px] relative"
+        style={{
+          perspective: "500px",
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {projects.map((project, index) => {
+          // const active = index === currentIndex ? 1 : 0;
+          // const offset = (currentIndex - index) / 3;
+          // const direction = Math.sign(currentIndex - index);
+          // const absOffset = Math.abs(currentIndex - index) / 3;
+          const translateX = `${currentIndex === index ? 0 : nextIndex === index ? 25 : previousIndex === index ? -25 : 0}`;
+          const scaleY = `${
+            currentIndex === index
+              ? 1
+              : nextIndex === index
+                ? 0.9
+                : previousIndex === index
+                  ? 0.9
+                  : 1
+          }`;
+
+          const translateZ = `${currentIndex === index ? 0 : nextIndex === index ? -10 : previousIndex === index ? -10 : -100}`;
+
+          const styles: React.CSSProperties = {
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+
+            transform: `scaleY(${scaleY}) translateZ(${translateZ}rem) translateX(${translateX}rem)`,
+            // filter: `blur(calc(${absOffset} * 1rem))`,
+            transition: "all 0.3s ease-out",
+            overflow: "hidden",
+          };
+
+          return (
+            <div
+              style={styles}
+              key={index}
+              className={`bottom-0 grayscale ${currentIndex === index ? "" : previousIndex === index ? "bottom-0 blur-sm" : nextIndex === index ? "bottom-0 blur-sm" : ""}`}
+            >
+              <Image src={project.image} fill alt={project.name} key={index} />
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
+            </div>
+          );
+        })}
       </div>
 
       <div className="flex flex-col gap-6 md:gap-10 items-center justify-center z-50 -mt-12 md:w-3/5">
@@ -101,7 +138,7 @@ const Projects: React.FC<ProjectsProps> = () => {
           {projects[currentIndex].name}
         </h1>
 
-        <p className=" md:text-lg text-center md:w-3/4">{projects[currentIndex].description}</p>
+        <p className="text-center md:w-3/4 text-accent">{projects[currentIndex].description}</p>
 
         <div className="flex gap-6 md:gap-12 md:-mt-5">
           {projects[currentIndex].tools.map((tool, index) => (

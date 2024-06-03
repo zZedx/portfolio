@@ -61,7 +61,9 @@ const Navbar: React.FC<NavbarProps> = () => {
           {NavLinks.map(link => (
             <li
               key={link.name}
-              className="hover:text-primary transition-colors"
+              className={`hover:text-primary transition-colors ${
+                activeSection === link.name.toLowerCase() ? "text-primary" : ""
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               <Link href={link.href}>{link.name}</Link>

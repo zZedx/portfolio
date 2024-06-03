@@ -2,7 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Cera";
+  src: url("../fonts/Cera.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
+  font-family: "Cera";
   font-size: 12px;
 }
 

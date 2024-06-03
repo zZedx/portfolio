@@ -58,7 +58,7 @@ const Home: React.FC<HomeProps> = () => {
     >
       <ScrollText onTop={onTop} onBottom={onBottom} />
 
-      <div className="h-full w-full snap-start" id="hero">
+      <div className="h-full w-full snap-start" id="home">
         <Hero />
       </div>
       <div className="h-full w-full snap-start" id="projects">
