@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { useAppContext } from "./AppContext";
 
 interface ProjectsProps {}
 
@@ -65,6 +66,7 @@ const projects = [
 ];
 
 const Projects: React.FC<ProjectsProps> = () => {
+  const { activeSection } = useAppContext();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(0);
@@ -92,11 +94,7 @@ const Projects: React.FC<ProjectsProps> = () => {
         }}
       >
         {projects.map((project, index) => {
-          // const active = index === currentIndex ? 1 : 0;
-          // const offset = (currentIndex - index) / 3;
-          // const direction = Math.sign(currentIndex - index);
-          // const absOffset = Math.abs(currentIndex - index) / 3;
-          const translateX = `${currentIndex === index ? 0 : nextIndex === index ? 25 : previousIndex === index ? -25 : 0}`;
+          const translateX = `${activeSection !== "projects" ? 0 : currentIndex === index ? 0 : nextIndex === index ? 25 : previousIndex === index ? -25 : 0}`;
           const scaleY = `${
             currentIndex === index
               ? 1
@@ -113,11 +111,10 @@ const Projects: React.FC<ProjectsProps> = () => {
             position: "absolute",
             width: "100%",
             height: "100%",
-
             transform: `scaleY(${scaleY}) translateZ(${translateZ}rem) translateX(${translateX}rem)`,
-            // filter: `blur(calc(${absOffset} * 1rem))`,
             transition: "all 0.3s ease-out",
             overflow: "hidden",
+            opacity: `${currentIndex === index ? 1 : activeSection !== "projects" ? 0 : 1}`,
           };
 
           return (
